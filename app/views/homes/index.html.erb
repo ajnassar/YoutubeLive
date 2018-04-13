@@ -1,5 +1,4 @@
 <%- if user_signed_in? %>
-hi <%= current_user.email %>
+signed in as <%= current_user.email %>
 <%- else %>
-hey
-<%- end %>
+not signed in<%- end %>
