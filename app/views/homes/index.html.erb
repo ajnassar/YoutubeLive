@@ -1,1 +1,5 @@
-Hey <%= @current_user.email %>
+<%- if user_signed_in? %>
+hi <%= current_user.email %>
+<%- else %>
+hey
+<%- end %>
