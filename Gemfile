@@ -21,6 +21,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'devise'
 
+gem 'webpacker', '~> 3.4'
+
 gem 'omniauth-google-oauth2'
 
 # Use CoffeeScript for .coffee assets and views
