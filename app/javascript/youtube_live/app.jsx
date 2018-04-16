@@ -1,10 +1,11 @@
 import React from 'react'
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
+import BroadcastList from "./components/broadcast_list"
 
-class App extends React.Component {
-
-  render(){
-    return (<div>hello world</div>)
-  }
-}
+const App = (props) => (
+  <div>
+    <BroadcastList/>
+  </div>
+)
 
 export default App
