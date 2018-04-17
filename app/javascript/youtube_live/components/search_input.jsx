@@ -1,5 +1,6 @@
 import React from 'react'
-import updateBroadcasts from '../actions'
+import { connect } from 'react-redux'
+import { getLiveBroadcasts } from '../actions'
 
 class SearchInput extends React.Component {
   constructor(props) {
@@ -7,22 +8,38 @@ class SearchInput extends React.Component {
     this.state = {
       searchTerm: ''
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick() {
-    // search API
-    // Update store (broadcasts)
-    // This will then populate the BroadcastList component
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.getLiveBroadcasts(this.state.value)
+    this.setState({value: ''});
   }
 
   render() {
     return (
-      <div>
-        <input value={this.state.searchTerm}/>
-        <button onClick={this.handleClick}/>
-      </div>
-    )
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Search:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
   }
 }
 
-export default SearchInput
+const mapDispatchToProps = dispatch => ({
+  getLiveBroadcasts: searchTerm => dispatch(getLiveBroadcasts(searchTerm))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchInput)
